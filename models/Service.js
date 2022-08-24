@@ -6,6 +6,10 @@ const serviceSchema = new mongoose.Schema({
         // type: mongoose.Schema.Types.ObjectId,
         // ref: 'user'
     },
+    active: {
+        type: Boolean,
+        required: true
+    }
     images: [{
         imageUrl: String
     }],
@@ -23,7 +27,7 @@ const serviceSchema = new mongoose.Schema({
         required: true,
     },
     currency: {
-        type: Number,
+        type: String,
         required: true,
     },
     priceCalculationType: {
@@ -48,8 +52,8 @@ const serviceSchema = new mongoose.Schema({
             required:true
         }
     },
-    contactNumber: {
-        type: Number,
+    telephone: {
+        type: String,
         required: true,
     },
     reviews: [{
