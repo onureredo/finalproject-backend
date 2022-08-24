@@ -3,12 +3,12 @@ const validator = require('validator');
 
 const serviceSchema = new mongoose.Schema({
     serviceProviderId: {
-        // How to store the service providerId from user database
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'user'
     },
-    images: {
-        imageId: Number,
+    images: [{
         imageUrl: String
-    },
+    }],
     title: {
         type: String,
         required: true,
@@ -33,33 +33,42 @@ const serviceSchema = new mongoose.Schema({
     address: {
         street:{
             type: String,
-            require:true
+            required:true
         },
         postalCode:{
             type: String,
-            require:true
+            required:true
         },
         city:{
             type: String,
-            require:true
+            required:true
         },
         country:{
             type: String,
-            require:true
+            required:true
         }
     },
     contactNumber: {
         type: Number,
         required: true,
     },
-    reviews: {
-        // userId : How to store the user Id from user database
-        userName: String,
-        score: Number,
+    reviews: [{
+        userID: {
+            // type: mongoose.Schema.Types.ObjectId,
+            // ref: 'user'
+        },
+        score: {
+            type: Number,
+            required: true
+        },
         comment: String
-    },
+    }],
     creationDate: {
         type: Number,
         required: true,
     },
 })
+
+const Service = mongoose.model('service', serviceSchema);
+
+module.exports = Service;
