@@ -5,14 +5,15 @@ const validator = require('validator');
 const serviceSchema = new Schema({
     // serviceId (MongoDB unique Id)
     serviceProviderId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'user',
         required: [true, 'serviceProviderId is required for the service']
     },
     active: {
         type: Boolean,
         required: [true, 'active flag is required for the service']
     },
-    images: [{
+    imagesList: [{
         imageURL: String
     }],
     title: {
@@ -65,17 +66,11 @@ const serviceSchema = new Schema({
         type: String,
         required: [true, 'telephone is required for the service']
     },
-    reviews: [{
+    reviewsList: [{
         userID: {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'user',
             required: [true, 'reviews.userID is required for the service']
-        },
-        userName: {
-            type: String,
-            required: [true, 'reviews.userName is required for the service']
-        },
-        imageUrl: {
-            type: String
         },
         score: {
             type: Number,

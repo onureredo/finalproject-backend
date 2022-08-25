@@ -52,14 +52,14 @@ const userSchema = new Schema({
     },
     providedServices: [{
         serviceId: {
-            type: String,
-            required: [true, 'providedServices.serviceId is required for the user']
+            type: Schema.Types.ObjectId,
+            ref: 'service'
         }
     }],
     consumedServices: [{
         serviceId: {
-            type: String,
-            required: [true, 'consumedServices.serviceId is required for the user']
+            type: Schema.Types.ObjectId,
+            ref: 'service'
         }
     }]
 

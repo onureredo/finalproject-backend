@@ -5,28 +5,29 @@ const validator = require('validator');
 const requestSchema = new Schema({
     // requestId (MongoDB unique Id)
     serviceConsumerId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'user',
         required: [true, 'serviceConsumerId is required for the request']
     },
     serviceProviderId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'user',
         required: [true, 'serviceProviderId is required for the request']
     },
     serviceId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'service',
         required: [true, 'serviceId is required for the request']
     },
     effectiveDate: {
         type: Date,
         required: [true, 'effectiveDate is required for the request']
     },
-    messages: [{
+    messagesList: [{
         userId: {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'user',
             required: [true, 'messages.userId is required for the request']
-        },
-        imageURL: {
-            type: String
         },
         message: {
             type: String,
