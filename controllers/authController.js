@@ -1,26 +1,25 @@
-
-
-
+// signup page
 module.exports.signup_get = (req, res) => {
-    // TODO
+    res.send('signup');
 }
 
-
-module.exports.signup_post = (req, res) => {
-    // TODO
-}
-
-
+//login page
 module.exports.login_get = (req, res) => {
-    // TODO
+    res.send('login');
 }
 
+//create a new user in db
+module.exports.signup_post = (req, res) => {
+    res.send('new signup');
+}
 
+//authenticate a current user
 module.exports.login_post = (req, res) => {
-    // TODO
+    res.send('user login');
 }
 
-
+//logout user
 module.exports.logout_get = (req, res) => {
-    // TODO
+    res.send('logout');
+    
 }

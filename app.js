@@ -28,6 +28,3 @@ app.use('/service', require('./routes/serviceRoutes'));
 app.use('/user/:userId/profile', require('./routes/userProfileRoutes'));
 app.use('/user/:userId/services/consumed', require('./routes/userConsumedServicesRoutes'));
 app.use('/user/:userId/services/provided', require('./routes/userProvidedServicesRoutes'));
-
-
-
