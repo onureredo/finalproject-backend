@@ -5,41 +5,60 @@ const validator = require('validator');
 const requestSchema = new Schema({
     // requestId (MongoDB unique Id)
     serviceConsumerId: {
-        type: Number
+        type: String,
+        required: [true, 'serviceConsumerId is required for the request']
     },
     serviceProviderId: {
-        type: Number
+        type: String,
+        required: [true, 'serviceProviderId is required for the request']
     },
     serviceId: {
-        type: Number
+        type: String,
+        required: [true, 'serviceId is required for the request']
     },
     effectiveDate: {
-        type: Date
+        type: Date,
+        required: [true, 'effectiveDate is required for the request']
     },
     messages: [{
         userId: {
-            type: Number
+            type: String,
+            required: [true, 'messages.userId is required for the request']
+        },
+        imageURL: {
+            type: String
         },
         message: {
-            type: String
+            type: String,
+            required: [true, 'messages.message is required for the request']
         }
     }],
-    address: {
+    effectiveAddress: {
         street: {
-            type: String
+            type: String,
+            required: [true, 'effectiveAddress.street is required for the request']
         },
         postalCode: {
-            type: String
+            type: String,
+            required: [true, 'effectiveAddress.postalCode is required for the request']
         },
         city: {
-            type: String
+            type: String,
+            required: [true, 'effectiveAddress.city is required for the request']
         },
         country: {
-            type: String
+            type: String,
+            required: [true, 'effectiveAddress.country is required for the request']
         }
     },
     status: {
-        type: String
+        type: String,
+        required: [true, 'status is required for the request'],
+        lowercase: true,
+        enum: {
+            values: ['pending', 'approved', 'rejected', 'completed'],
+            message: '{VALUE} is not a valid status for the request'
+          } 
     }
 }, { timestamps: true });
 
