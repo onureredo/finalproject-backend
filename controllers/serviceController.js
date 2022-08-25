@@ -9,7 +9,9 @@ module.exports.service_get = (req, res) => {
 
 module.exports.newRequest_get = (req, res) => {
     let serviceId = req.params.serviceId;
-    res.send(serviceId + 'new')
+    Service.find({_id: serviceId}).select('title price currency priceCalculationType')
+    .then((result) => res.send(result))
+    .catch((err) => console.log('Error fetchin service: ' + err))
 }
 
 module.exports.newRequest_post = (req, res) => {
