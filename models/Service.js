@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const validator = require('validator');
-require('../models/User')
 
 const serviceSchema = new Schema({
     // serviceId (MongoDB unique Id)
