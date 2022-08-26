@@ -4,6 +4,7 @@
 GET {{host}}
 
 ### request 02
+GET {{host}}/search?searchTerm=trans&sortCriteria=price_high_to_low
 
 ### request 03
 
