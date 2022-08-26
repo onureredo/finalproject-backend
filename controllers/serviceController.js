@@ -3,7 +3,7 @@ const Request = require('../models/Request')
 
 module.exports.service_get = (req, res) => {
     let serviceId = req.params.serviceId;
-    Service.find({_id: serviceId}).populate('serviceProviderId')
+    Service.find({_id: serviceId}).populate({path: 'reviewsList.userId', model: 'user', select: 'name'})
     .then((result) => res.send(result))
     .catch((err) => console.log('Error fetching service: ' + err))
 }
