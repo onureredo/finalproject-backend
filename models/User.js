@@ -30,7 +30,8 @@ const userSchema = new Schema({
         required: [true, 'telephone is required for the user'],
     },
     imageURL: {
-        type: String
+        type: String,
+        default: ""
     },
     address: {
         street: {
