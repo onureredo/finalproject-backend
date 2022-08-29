@@ -21,6 +21,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
 
 // routes
 app.get("/", async (req, res) => { res.json("home page") });
+app.use("/", require('./routes/userTestRoute'));
 
 app.use('/auth', require('./routes/authRoutes'));
 app.use('/search', require('./routes/searchRoutes'));
