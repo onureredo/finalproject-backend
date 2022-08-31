@@ -1,70 +1,137 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const validator = require('validator');
+const validatorjs = require('validator');
+const idValidator = require('mongoose-id-validator');
 
 const userSchema = new Schema({
     // userId (MongoDB unique Id)
     email: {
         type: String,
-        required: [true, 'email is required for the user'],
+        required: [true, 'email is required.'],
         unique: true,
+        index: true,
         lowercase: true,
-        validate: [validator.isEmail, 'this is not a valid email']
+        validate: [
+            {
+                validator: (value) => validatorjs.isEmail(value),
+                message: 'email is not valid.'
+            }
+        ]
     },
     password: {
         type: String,
-        required: [true, 'password is required for the user'],
-        minlength: [8, 'Minimum password length is 8 characters']
+        required: [true, 'password is required.'],
+        validate: [
+            {
+                validator: (value) => validatorjs.isLength(value, { min: 8, max: 50 }),
+                message: 'password is not between 8 and 50 characters.'
+            },
+            {
+                validator: (value) => validatorjs.isStrongPassword(value),
+                message: 'password is not strong.'
+            }
+        ]
     },
     name: {
         type: String,
-        required: [true, 'name is required for the user'],
-        maxlength: [100, 'Maximum length for the name is 100 characters']
+        required: [true, 'name is required.'],
+        validate: [
+            {
+                validator: (value) => validatorjs.isLength(value, { min: 3, max: 100 }),
+                message: 'name is not between 3 and 100 characters.'
+            }
+        ]
     },
     birthdate: {
         type: Date,
-        required: [true, 'birthdate is required for the user'],
+        required: [true, 'birthdate is required.'],
+        validate: [
+            {
+                validator: (value) => value < Date.now(),
+                message: 'birthdate is not less than today.'
+            }
+        ]
     },
     telephone: {
         type: String,
-        required: [true, 'telephone is required for the user'],
+        required: [true, 'telephone is required.'],
+        validate: [
+            {
+                validator: (value) => validatorjs.isMobilePhone(value, 'any'),
+                message: 'telephone is not valid.'
+            }
+        ]
     },
     imageURL: {
         type: String,
-        default: ""
+        required: false,
+        default: "",
+        validate: [
+            {
+                validator: (value) => value === "" || validatorjs.isURL(value),
+                message: 'image URL is not valid.'
+            }
+        ]
     },
     address: {
         street: {
             type: String,
-            required: [true, 'address.street is required for the user']
+            required: [true, 'street is required.'],
+            validate: [
+                {
+                    validator: (value) => validatorjs.isLength(value, { min: 5, max: 150 }),
+                    message: 'street is not between 5 and 150 characters.'
+                }
+            ]
         },
         postalCode: {
             type: String,
-            required: [true, 'address.postalCode is required for the user']
+            required: [true, 'postal code is required.'],
+            validate: [
+                {
+                    validator: (value) => validatorjs.isPostalCode(value, 'any'),
+                    message: 'postal code is not valid.'
+                }
+            ]
         },
         city: {
             type: String,
-            required: [true, 'address.city is required for the user']
+            required: [true, 'city is required.'],
+            validate: [
+                {
+                    validator: (value) => validatorjs.isLength(value, { min: 2, max: 50 }),
+                    message: 'city is not between 2 and 50 characters.'
+                }
+            ]
         },
         country: {
             type: String,
-            required: [true, 'address.country is required for the user']
+            required: [true, 'country is required.'],
+            validate: [
+                {
+                    validator: (value) => validatorjs.isISO31661Alpha2(value),
+                    message: 'country is not valid.'
+                }
+            ]
         }
     },
     providedServices: [{
         serviceId: {
             type: Schema.Types.ObjectId,
-            ref: 'service'
+            ref: 'service',
+            required: true,
         }
     }],
     consumedServices: [{
         serviceId: {
             type: Schema.Types.ObjectId,
-            ref: 'service'
+            ref: 'service',
+            required: true,
         }
     }]
 
 }, { timestamps: true });
 
+userSchema.plugin(idValidator);
 const User = mongoose.model('user', userSchema);
 module.exports = User;

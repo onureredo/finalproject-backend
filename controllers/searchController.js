@@ -1,25 +1,32 @@
 const Service = require('../models/Service');
 
-const getAverageScore = (reviewsList = []) => {
-    const scoresList = reviewsList.map(e => e.score);
-    const serviceOverallScoreSum = scoresList.length !== 0 ?
-        scoresList.reduce((previousValue, currentValue) => previousValue + currentValue) : 0;
-    return Math.round(serviceOverallScoreSum / reviewsList.length)
-}
+const getSortObject = sortCriteria => {
+    let sortObj = {};
+    // default most_recents_first
+    let key = "createdAt";
+    let value = "desc";
 
-const getSortKeyValue = sortCriteria => {
     switch (sortCriteria) {
         case "price_high_to_low":
-            return { key: "price", value: "desc" };
+            key = "price";
+            break;
         case "price_low_to_high":
-            return { key: "price", value: "asc" };
-        case "most_recents_first":
-            return { key: "createdAt", value: "desc" };
+            key = "price";
+            value = "asc";
+            break;
         case "most_recents_last":
-            return { key: "createdAt", value: "asc" };
-        default:
-            return { key: "createdAt", value: "desc" };
+            value = "asc";
+            break;
+        case "score_high_to_low":
+            key = "overallScore";
+            break;
+        case "score_low_to_high":
+            key = "overallScore";
+            value = "asc";
+            break;
     }
+    sortObj[key] = value;
+    return sortObj;
 }
 
 module.exports.search_get = async (req, res) => {
@@ -32,10 +39,7 @@ module.exports.search_get = async (req, res) => {
     } = req.query;
 
     try {
-        const { key, value } = getSortKeyValue(sortCriteria);
-        let sortObj = {};
-        sortObj[key] = value;
-
+        const sortObj = getSortObject(sortCriteria);
         const servicesList = await Service.find(
             {
                 title: { "$regex": searchTerm, "$options": "i" },
@@ -45,7 +49,7 @@ module.exports.search_get = async (req, res) => {
                     { "address.city": { "$regex": location, "$options": "i" } }
                 ]
             },
-            '_id title imagesList.imageURL price currency priceCalculationType address.city address.country reviewsList.score createdAt')
+            '_id title imagesList.imageURL price currency priceCalculationType address.city address.country overallScore reviewsList.score createdAt')
             .limit(Number(perPage))
             .skip(Number(perPage) * Number(page))
             .sort(sortObj)
@@ -62,7 +66,7 @@ module.exports.search_get = async (req, res) => {
                 priceCalculationType: service.priceCalculationType,
                 city: service.address.city,
                 country: service.address.country,
-                overallScore: getAverageScore(service.reviewsList),
+                overallScore: service.overallScore,
                 createdAt: service.createdAt
             })
         });
@@ -70,8 +74,7 @@ module.exports.search_get = async (req, res) => {
         res.status(200).json(result);
     } catch (err) {
         console.error(err);
-        res.status(400).send(err);
+        res.status(500).send(err);
     }
-
 
 }
