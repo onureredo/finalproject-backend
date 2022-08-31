@@ -17,10 +17,10 @@ const getSortObject = sortCriteria => {
         case "most_recents_last":
             value = "asc";
             break;
-        case "score_high_to_low":
+        case "rating_high_to_low":
             key = "overallScore";
             break;
-        case "score_low_to_high":
+        case "rating_low_to_high":
             key = "overallScore";
             value = "asc";
             break;
