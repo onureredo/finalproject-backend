@@ -216,14 +216,6 @@
       }
    },
    {
-      "name":"Bonaire, Sint Eustatius and Saba",
-      "code":"BQ",
-      "currency":{
-         "name":"Mvdol",
-         "code":"BOV"
-      }
-   },
-   {
       "name":"Brazil",
       "code":"BR",
       "currency":{
@@ -237,14 +229,6 @@
       "currency":{
          "name":"Bahamian Dollar",
          "code":"BSD"
-      }
-   },
-   {
-      "name":"Bhutan",
-      "code":"BT",
-      "currency":{
-         "name":"Ngultrum",
-         "code":"BTN"
       }
    },
    {
@@ -288,14 +272,6 @@
       }
    },
    {
-      "name":"Switzerland",
-      "code":"CH",
-      "currency":{
-         "name":"WIR Euro",
-         "code":"CHE"
-      }
-   },
-   {
       "name":"Liechtenstein",
       "code":"LI",
       "currency":{
@@ -309,22 +285,6 @@
       "currency":{
          "name":"Swiss Franc",
          "code":"CHF"
-      }
-   },
-   {
-      "name":"Switzerland",
-      "code":"CH",
-      "currency":{
-         "name":"WIR Franc",
-         "code":"CHW"
-      }
-   },
-   {
-      "name":"Chile",
-      "code":"CL",
-      "currency":{
-         "name":"Unidad de Fomento",
-         "code":"CLF"
       }
    },
    {
@@ -349,14 +309,6 @@
       "currency":{
          "name":"Colombian Peso",
          "code":"COP"
-      }
-   },
-   {
-      "name":"Colombia",
-      "code":"CO",
-      "currency":{
-         "name":"Unidad de Valor Real",
-         "code":"COU"
       }
    },
    {
@@ -864,14 +816,6 @@
       }
    },
    {
-      "name":"Haiti",
-      "code":"HT",
-      "currency":{
-         "name":"Gourde",
-         "code":"HTG"
-      }
-   },
-   {
       "name":"Hungary",
       "code":"HU",
       "currency":{
@@ -1061,14 +1005,6 @@
       "currency":{
          "name":"Liberian Dollar",
          "code":"LRD"
-      }
-   },
-   {
-      "name":"Lesotho",
-      "code":"LS",
-      "currency":{
-         "name":"Loti",
-         "code":"LSL"
       }
    },
    {
@@ -1301,14 +1237,6 @@
       "currency":{
          "name":"Rial Omani",
          "code":"OMR"
-      }
-   },
-   {
-      "name":"Panama",
-      "code":"PA",
-      "currency":{
-         "name":"Balboa",
-         "code":"PAB"
       }
    },
    {
@@ -1632,14 +1560,6 @@
       }
    },
    {
-      "name":"El Salvador",
-      "code":"SV",
-      "currency":{
-         "name":"US Dollar",
-         "code":"USD"
-      }
-   },
-   {
       "name":"Guam",
       "code":"GU",
       "currency":{
@@ -1771,8 +1691,8 @@
       "name":"Venezuela (Bolivarian Republic Of)",
       "code":"VE",
       "currency":{
-         "name":"Bolívar Soberano",
-         "code":"VES"
+         "name":"Venezuelan Bolívar",
+         "code":"VEF"
       }
    },
    {
@@ -2010,14 +1930,6 @@
    {
       "name":"Lesotho",
       "code":"LS",
-      "currency":{
-         "name":"Rand",
-         "code":"ZAR"
-      }
-   },
-   {
-      "name":"Namibia",
-      "code":"NA",
       "currency":{
          "name":"Rand",
          "code":"ZAR"

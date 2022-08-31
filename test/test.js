@@ -4,14 +4,11 @@ const mongoose = require('mongoose');
 const User = require('../models/User');
 const Service = require('../models/Service');
 const Request = require('../models/Request');
-
+const Country = require('../models/Country');
+const fs = require('fs');
+const path = require('path');
 
 const dbURI = `mongodb+srv://khaleghzadegan:test1234@cluster0.mw5be3d.mongodb.net/testdb`;
-
-User.createCollection();
-Service.createCollection();
-Request.createCollection();
-
 
 const createUser = async () => {
     const testUser = {
@@ -121,6 +118,33 @@ const createRequest = async () => {
     }
 }
 
+
+const insertCountries = () => {
+
+    fs.readFile(path.join(__dirname, 'countries.json'),
+        { encoding: 'utf-8' },
+        async (err, data) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            try {
+                const connection = await mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+                console.log("database connection successful");
+
+                JSON.parse(data).forEach(async (e) => {
+                    const country = await Country.create(e);
+                    console.log(`${country.name} inserted in database!`);
+                });
+            } catch (e) {
+                console.error(e);
+            }
+
+        });
+}
+
 // createUser();
-createService();
+// createService();
 // createRequest();
+// insertCountries();
