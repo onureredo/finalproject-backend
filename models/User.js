@@ -116,22 +116,18 @@ const userSchema = new Schema({
         }
     },
     providedServices: [{
-        serviceId: {
-            type: Schema.Types.ObjectId,
-            ref: 'service',
-            required: true,
-        }
+        type: Schema.Types.ObjectId,
+        ref: 'Service',
+        required: true,
     }],
     consumedServices: [{
-        serviceId: {
-            type: Schema.Types.ObjectId,
-            ref: 'service',
-            required: true,
-        }
+        type: Schema.Types.ObjectId,
+        ref: 'Service',
+        required: true,
     }]
 
 }, { timestamps: true });
 
 userSchema.plugin(idValidator);
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = User;

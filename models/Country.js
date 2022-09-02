@@ -38,5 +38,5 @@ const countrySchema = new Schema({
     }
 });
 
-const Country = mongoose.model('country', countrySchema);
+const Country = mongoose.model('Country', countrySchema);
 module.exports = Country;

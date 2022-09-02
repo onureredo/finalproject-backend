@@ -2,23 +2,25 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const validatorjs = require('validator');
 const idValidator = require('mongoose-id-validator');
+const User = require('../models/User');
+const Service = require('../models/Service');
 
 const requestSchema = new Schema({
     // requestId (MongoDB unique Id)
-    serviceConsumerId: {
+    serviceConsumer: {
         type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: [true, 'service consumer Id is required.']
+        ref: 'User',
+        required: [true, 'service consumer is required.']
     },
-    serviceProviderId: {
+    serviceProvider: {
         type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: [true, 'service provider Id is required.']
+        ref: 'User',
+        required: [true, 'service provider is required.']
     },
-    serviceId: {
+    service: {
         type: Schema.Types.ObjectId,
-        ref: 'service',
-        required: [true, 'service Id is required.']
+        ref: 'Service',
+        required: [true, 'service is required.']
     },
     effectiveDate: {
         type: Date,
@@ -31,14 +33,14 @@ const requestSchema = new Schema({
         ]
     },
     messagesList: [{
-        userId: {
+        user: {
             type: Schema.Types.ObjectId,
-            ref: 'user',
-            required: [true, 'user Id is required for a message.']
+            ref: 'User',
+            required: [true, 'user is required for the message.']
         },
         message: {
             type: String,
-            required: [true, 'message content is required for a message.'],
+            required: [true, 'message content is required for the message.'],
             validate: [
                 {
                     validator: (value) => validatorjs.isLength(value, { min: 1, max: 500 }),
@@ -105,5 +107,5 @@ const requestSchema = new Schema({
 }, { timestamps: true });
 
 requestSchema.plugin(idValidator);
-const Request = mongoose.model('request', requestSchema);
+const Request = mongoose.model('Request', requestSchema);
 module.exports = Request;

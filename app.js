@@ -1,14 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 require("dotenv").config();
 
 const app = express();
 
 
 // middleware
-app.use(express.json());
+app.use(logger('dev'));
+app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(express.static('public'));
+
+app.use(function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 // database connection
 const dbURI = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`;

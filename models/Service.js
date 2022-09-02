@@ -3,13 +3,14 @@ const { Schema } = mongoose;
 const validatorjs = require('validator');
 const idValidator = require('mongoose-id-validator');
 const isCurrencyCode = require('currency-code-validator');
+const User = require('../models/User');
 
 const serviceSchema = new Schema({
     // serviceId (MongoDB unique Id)
-    serviceProviderId: {
+    serviceProvider: {
         type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: [true, 'service provider Id is required.']
+        ref: 'User',
+        required: [true, 'service provider is required.']
     },
     active: {
         type: Boolean,
@@ -135,10 +136,10 @@ const serviceSchema = new Schema({
         default: 0
     },
     reviewsList: [{
-        userId: {
+        user: {
             type: Schema.Types.ObjectId,
-            ref: 'user',
-            required: [true, 'user Id is required for the review.']
+            ref: 'User',
+            required: [true, 'user is required for the review.']
         },
         score: {
             type: Number,
@@ -181,5 +182,5 @@ serviceSchema.post('updateOne', async function (next) {
 });
 
 serviceSchema.plugin(idValidator);
-const Service = mongoose.model('service', serviceSchema);
+const Service = mongoose.model('Service', serviceSchema);
 module.exports = Service;
