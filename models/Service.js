@@ -135,7 +135,7 @@ const serviceSchema = new Schema({
         default: 0
     },
     reviewsList: [{
-        userID: {
+        userId: {
             type: Schema.Types.ObjectId,
             ref: 'user',
             required: [true, 'user Id is required for the review.']

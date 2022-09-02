@@ -7,6 +7,7 @@ GET {{host}}
 GET {{host}}/search?searchTerm=trans&sortCriteria=price_high_to_low
 
 ### request 03
+GET {{host}}/service/630f458247ffe62beca2cd01
 
 ### request 04
 
@@ -15,6 +16,22 @@ GET {{host}}/search?searchTerm=trans&sortCriteria=price_high_to_low
 ### request 06
 
 ### request 07
+POST {{host}}/auth/signup
+Content-Type: application/json
+
+{
+        "email": "onur1267dewaaa#@gmail.com",
+        "password": "Onur123test@Masters5",
+        "name": "Onur",
+        "birthdate": "1995-10-21T13:28:06.419Z",
+        "telephone": "+491796669608",
+        "address": {
+            "street": "Berliner Platz 11, Berlin Nord",
+            "postalCode": "47258",
+            "city": "Berlin",
+            "country": "DE"
+        }
+    }
 
 ### request 08
 

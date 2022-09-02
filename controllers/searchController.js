@@ -30,15 +30,15 @@ const getSortObject = sortCriteria => {
 }
 
 module.exports.search_get = async (req, res) => {
-    const {
-        searchTerm,
-        location = "",
-        sortCriteria = "",
-        perPage = "10",
-        page = "0"
-    } = req.query;
-
     try {
+        const {
+            searchTerm,
+            location = "",
+            sortCriteria = "",
+            perPage = "10",
+            page = "0"
+        } = req.query;
+
         const sortObj = getSortObject(sortCriteria);
         const servicesList = await Service.find(
             {
@@ -76,5 +76,4 @@ module.exports.search_get = async (req, res) => {
         console.error(err);
         res.status(500).send(err);
     }
-
 }
