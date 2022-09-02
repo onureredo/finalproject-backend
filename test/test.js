@@ -12,9 +12,9 @@ const dbURI = `mongodb+srv://khaleghzadegan:test1234@cluster0.mw5be3d.mongodb.ne
 
 const createUser = async () => {
     const testUser = {
-        email: "onur1267@gmail.com",
-        password: "Onur#123test@Masters5",
-        name: "Onur",
+        email: "alikh@gmail.com",
+        password: "test#123test@Masters5",
+        name: "Ali",
         birthdate: new Date(1995, 09, 28),
         telephone: "+491796669608",
         imageURL: "",
@@ -22,7 +22,7 @@ const createUser = async () => {
             street: "Berliner Platz 11, Berlin Nord",
             postalCode: "47258",
             city: "Berlin",
-            country: "DE"
+            country: "US"
         },
         // providedServices: [],
         // consumedServices: []
@@ -41,7 +41,7 @@ const createUser = async () => {
 
 const createService = async () => {
     const testService = {
-        serviceProviderId: "630f0ee5ea42864d94007a26",
+        serviceProvider: "6311c2d4edab5c573c4d88e5",
         active: true,
         imagesList: [
             { imageURL: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" },
@@ -62,14 +62,9 @@ const createService = async () => {
         },
         telephone: "+491798889601",
         reviewsList: [{
-            userID: "630f12ec4c1c8d1a104d2650",
+            user: "6311c378dacc520b58c25a61",
             score: 3.2,
             comment: "I am satisfied with this service. The only thing was that they were late a little."
-        },
-        {
-            userID: "630f1350896185429c462ad9",
-            score: 4.6,
-            comment: "I am very very satisfied with this service, thank you Max Mustermann"
         }]
     }
 
@@ -145,6 +140,6 @@ const insertCountries = () => {
 }
 
 // createUser();
-// createService();
+createService();
 // createRequest();
 // insertCountries();

@@ -2,14 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const logger = require('morgan');
+// const logger = require('morgan');
 require("dotenv").config();
 
 const app = express();
 
 
 // middleware
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('public'));
