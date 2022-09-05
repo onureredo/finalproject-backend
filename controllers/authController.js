@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 const handleErrors = (err) => {
     const errorJSON = {};
@@ -57,6 +58,12 @@ const handleErrors = (err) => {
     }
 
     return errorJSON;
+}
+
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: 30 * 60
+    })
 }
 
 
