@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const validatorjs = require('validator');
 const idValidator = require('mongoose-id-validator');
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
     // userId (MongoDB unique Id)
@@ -127,6 +128,12 @@ const userSchema = new Schema({
     }]
 
 }, { timestamps: true });
+
+userSchema.pre('save', async function (next) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt)
+    next();
+});
 
 userSchema.plugin(idValidator);
 const User = mongoose.model('User', userSchema);
