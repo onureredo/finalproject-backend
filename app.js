@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 // const logger = require('morgan');
 require("dotenv").config();
 
@@ -10,6 +11,9 @@ const app = express();
 
 // middleware
 // app.use(logger('dev'));
+app.use(cors({
+    origin: '*'
+}))
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('public'));
