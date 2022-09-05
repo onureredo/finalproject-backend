@@ -26,10 +26,10 @@ const userSchema = new Schema({
                 validator: (value) => validatorjs.isLength(value, { min: 8, max: 50 }),
                 message: 'password is not between 8 and 50 characters.'
             },
-            {
-                validator: (value) => validatorjs.isStrongPassword(value),
-                message: 'password is not strong.'
-            }
+            // {
+            //     validator: (value) => validatorjs.isStrongPassword(value),
+            //     message: 'password is not strong.'
+            // }
         ]
     },
     name: {
@@ -55,12 +55,12 @@ const userSchema = new Schema({
     telephone: {
         type: String,
         required: [true, 'telephone is required.'],
-        validate: [
-            {
-                validator: (value) => validatorjs.isMobilePhone(value, 'any'),
-                message: 'telephone is not valid.'
-            }
-        ]
+        // validate: [
+        //     {
+        //         validator: (value) => validatorjs.isMobilePhone(value, 'any'),
+        //         message: 'telephone is not valid.'
+        //     }
+        // ]
     },
     imageURL: {
         type: String,
@@ -76,54 +76,54 @@ const userSchema = new Schema({
     address: {
         street: {
             type: String,
-            required: [true, 'street is required.'],
-            validate: [
-                {
-                    validator: (value) => validatorjs.isLength(value, { min: 5, max: 150 }),
-                    message: 'street is not between 5 and 150 characters.'
-                }
-            ]
+            // required: [true, 'street is required.'],
+            // validate: [
+            //     {
+            //         validator: (value) => validatorjs.isLength(value, { min: 5, max: 150 }),
+            //         message: 'street is not between 5 and 150 characters.'
+            //     }
+            // ]
         },
         postalCode: {
             type: String,
-            required: [true, 'postal code is required.'],
-            validate: [
-                {
-                    validator: (value) => validatorjs.isPostalCode(value, 'any'),
-                    message: 'postal code is not valid.'
-                }
-            ]
+            // required: [true, 'postal code is required.'],
+            // validate: [
+            //     {
+            //         validator: (value) => validatorjs.isPostalCode(value, 'any'),
+            //         message: 'postal code is not valid.'
+            //     }
+            // ]
         },
         city: {
             type: String,
-            required: [true, 'city is required.'],
-            validate: [
-                {
-                    validator: (value) => validatorjs.isLength(value, { min: 2, max: 50 }),
-                    message: 'city is not between 2 and 50 characters.'
-                }
-            ]
+            // required: [true, 'city is required.'],
+            // validate: [
+            //     {
+            //         validator: (value) => validatorjs.isLength(value, { min: 2, max: 50 }),
+            //         message: 'city is not between 2 and 50 characters.'
+            //     }
+            // ]
         },
         country: {
             type: String,
-            required: [true, 'country is required.'],
-            validate: [
-                {
-                    validator: (value) => validatorjs.isISO31661Alpha2(value),
-                    message: 'country is not valid.'
-                }
-            ]
+            // required: [true, 'country is required.'],
+            // validate: [
+            //     {
+            //         validator: (value) => validatorjs.isISO31661Alpha2(value),
+            //         message: 'country is not valid.'
+            //     }
+            // ]
         }
     },
     providedServices: [{
         type: Schema.Types.ObjectId,
         ref: 'Service',
-        required: true,
+        // required: true,
     }],
     consumedServices: [{
         type: Schema.Types.ObjectId,
         ref: 'Service',
-        required: true,
+        // required: true,
     }]
 
 }, { timestamps: true });

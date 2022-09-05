@@ -69,8 +69,9 @@ module.exports.signup_post = async (req, res) => {
     try {
         const { email, password, name, birthdate, telephone, address } = req.body;
         const user = await User.create({ email, password, name, birthdate, telephone, address });
-        res.send(user)
+        res.status(201).json(user)
     } catch (err) {
+        console.log(err)
         const errors = handleErrors(err);
         res.status(400).send(errors);
     }
@@ -83,7 +84,12 @@ module.exports.login_get = (req, res) => {
 
 
 module.exports.login_post = (req, res) => {
-    // TODO
+    try {
+        const { email, password } = req.body;
+        
+    } catch (err) {
+        res.status(400).send(errors);
+    }
 }
 
 
