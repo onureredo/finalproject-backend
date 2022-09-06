@@ -22,12 +22,12 @@ const serviceSchema = new Schema({
             type: String,
             required: false,
             default: "",
-            validate: [
-                {
-                    validator: (value) => value === "" || validatorjs.isURL(value),
-                    message: 'image URL is not valid.'
-                }
-            ]
+            // validate: [
+            //     {
+            //         validator: (value) => value === "" || validatorjs.isURL(value),
+            //         message: 'image URL is not valid.'
+            //     }
+            // ]
         }
     }],
     title: {
