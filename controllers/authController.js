@@ -61,7 +61,7 @@ const handleErrors = (err) => {
 }
 
 const createToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+    return jwt.sign({ id }, 'what', {
         expiresIn: 30 * 60
     })
 }
@@ -73,10 +73,13 @@ module.exports.signup_get = (req, res) => {
 
 
 module.exports.signup_post = async (req, res) => {
+    const { email, password, name, birthdate, telephone, address } = req.body;
+
     try {
-        const { email, password, name, birthdate, telephone, address } = req.body;
         const user = await User.create({ email, password, name, birthdate, telephone, address });
-        res.status(201).json(user)
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: 30 * 60 * 1000 });
+        res.status(201).json({ user: user._id});
     } catch (err) {
         console.log(err)
         const errors = handleErrors(err);
