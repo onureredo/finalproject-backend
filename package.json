@@ -19,10 +19,12 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "currency-code-validator": "^1.0.1",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
+    "express-session": "^1.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.23",
     "mongoose-id-validator": "^0.6.0",
