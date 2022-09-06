@@ -61,7 +61,7 @@ const handleErrors = (err) => {
 }
 
 const createToken = (id) => {
-    return jwt.sign({ id }, 'what', {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: 30 * 60
     })
 }
