@@ -18,6 +18,7 @@
   "homepage": "https://github.com/onureredo/finalproject-backend#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cloudinary": "^1.31.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "currency-code-validator": "^1.0.1",
