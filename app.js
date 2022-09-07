@@ -12,7 +12,7 @@ const app = express();
 // middleware
 // app.use(logger('dev'));
 app.use(cors({
-    origin: 'http://localhost:3000', credentials: true
+    origin: 'https://findapro.netlify.app', credentials: true
 }))
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
